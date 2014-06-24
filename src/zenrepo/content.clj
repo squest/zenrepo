@@ -3,8 +3,6 @@
             [me.raynes.fs :as fs]
             [clojure.string :as cs]))
 
-
-
 (def repo (first (fs/find-files fs/*cwd* #"repo")))
 
 (defn- find-repo

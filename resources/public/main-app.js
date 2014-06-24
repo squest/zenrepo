@@ -7,6 +7,7 @@ var app = angular.module('generatorApp', []);
 var baseURL = "http://localhost:3000";
 
 app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
+
 	$scope.pages = [];
 	$scope.cpage = false;
 	$scope.postForm = function(form) {
@@ -14,7 +15,7 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
 			.success(function (data) {
 			   $scope.pages = data.pages;
 				$scope.cpage = false;
-				
+
 				console.log(data.pages);
 
 			})
