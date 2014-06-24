@@ -1,0 +1,11 @@
+{% include "public/html/header.html" %}
+
+{% for item in content %}
+
+	<li>
+		<a href="{{item.url}}" target="_blank">{{item.filename}}</a>
+	</li>
+
+{% endfor %}
+
+{% include "public/html/footer.html" %}

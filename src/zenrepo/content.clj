@@ -7,7 +7,7 @@
 
 (def repo (first (fs/find-files fs/*cwd* #"repo")))
 
-(defn find-repo
+(defn- find-repo
   [zenid]
   (first (fs/find-files* repo #(= (str zenid) (fs/base-name %)))))
 
@@ -15,7 +15,7 @@
   [zenid]
   (first (fs/iterate-dir (find-repo zenid))))
 
-(defn render
+(defn- pages-list
   [zenid]
   (let [data (all-files-in-repo zenid)
         paths (drop-while #(not= "repo" %)
@@ -23,7 +23,16 @@
         path (cs/join "/" paths)
         files (filter #(= ".html" (fs/extension %))
                       (nth data 2))]
-    (view/render (second (map #(str path "/" %)  files)))))
+    (map #(str path "/" %)  files)))
+
+(defn pages
+  [zenid]
+  (let [files (pages-list zenid)]
+    (map #(hash-map :url (str "/rendered-content/" zenid "/" (fs/base-name %))
+                    :filename %)
+         files)))
+
+
 
 
 

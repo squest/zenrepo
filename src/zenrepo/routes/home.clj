@@ -1,7 +1,8 @@
 (ns zenrepo.routes.home
   (:use compojure.core)
   (:require [zenrepo.layout :as view]
-            [zenrepo.content :as content]))
+            [zenrepo.content :as content]
+            [noir.response :as resp]))
 
 (defn home-page
   []
@@ -18,8 +19,6 @@
 
 (defroutes home-routes
   (GET "/" [] (home-page))
-  (GET "/content/:zenid" [zenid]
-       (content/render zenid))
-  (GET "/render/:filename" [filename]
-       (render-files filename)))
+  (PUT "/pages-list" req
+       (resp/json {:pages (content/pages (:zenid (:params req)))})))
 

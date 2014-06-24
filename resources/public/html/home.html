@@ -4,19 +4,64 @@
    <meta charset="UTF-8">
    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/normalize.min.css"/>
    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/foundation.min.css"/>
-
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+	<script src="main-app.js"></script>
    <title>
       {{page.title}}
    </title>
 </head>
-<body class="row">
+<body class="row" ng-app="generatorApp" ng-controller="MainCtrl">
    <header>
       <h2>
          {{page.headline}}
       </h2>
       <hr/>
    </header>
+   <div class="row">
+	   <div class="large-6  columns">
+		   <form>
+			   <fieldset>
+				   <legend>
+					   A form to do something (hopefully meaningful)
+				   </legend>
+				   <input type="text" ng-model="form.zenid" placeholder="Notes-id" /><br>
+				   <button ng-click="postForm(form)">
+					   Submit
+				   </button>
+			   </fieldset>
+		   </form>
+	   </div>
+	   <br/>
+	   {% verbatim %}
 
+
+	   <div class="large-6 columns">
+		   <div ng-show="pages.length != 0">
+			   <h5>
+				   Ini daftar halamannya
+			   </h5>
+		   </div>
+		   <div ng-show="pages.length == 0">
+			   <h5>
+				   There ain't no page in this putt hole
+			   </h5>
+		   </div>
+		   <br/>
+		   <ol>
+			   <li ng-repeat="page in pages">
+				   <a ng-click="getPage(page.filename)" target="_blank">{{page.filename}}</a>
+			   </li>
+		   </ol>
+	   </div>
+   </div>
+
+   <div class="row">
+	   <div class="large-11 large-centered columns" ng-show="cpage==true">
+		   <div ng-include="currentPage"></div>
+	   </div>
+   </div>
+
+   {% endverbatim %}
    <footer>
       <hr/>
       <p>
