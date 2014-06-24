@@ -11,3 +11,6 @@ pom.xml
 /.idea
 *.iml
 *.xml
+config.clj
+config.js
+/.name

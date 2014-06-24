@@ -13,7 +13,8 @@
    [com.taoensso/tower "2.0.2"]
    [http-kit "2.1.18"]
    [selmer "0.6.8"]
-   [lib-noir "0.8.4"]]
+   [lib-noir "0.8.4"]
+   [me.raynes/fs "1.4.4"]]
   :ring
   {:handler zenrepo.handler/app,
    :init zenrepo.handler/init,

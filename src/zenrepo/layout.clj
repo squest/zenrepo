@@ -4,7 +4,7 @@
             [ring.util.response :refer [content-type response]]
             [compojure.response :refer [Renderable]]))
 
-(def template-path "public/html")
+(def template-path "public/")
 
 (deftype RenderableTemplate [template params]
   Renderable
